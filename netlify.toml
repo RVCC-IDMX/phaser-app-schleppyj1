@@ -11,7 +11,7 @@
 # Redirects and rewrite rules for SPA
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/bingo.html"
   status = 200
 
 # Headers for cache control and security
