@@ -10,7 +10,7 @@
 
 # Redirects and rewrite rules for SPA
 [[redirects]]
-  from = "/*"
+  from = "/index.html"
   to = "/bingo.html"
   status = 200
 
