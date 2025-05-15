@@ -1,9 +1,13 @@
+// Created an array for all possible number combinations.
 let numbersCalled = new Array(76);
 
+// Created an array for all possible squares.
 let squaresSelected = new Array(25);
 
 let newNumber = -1;
 
+
+// Added sound effects for when the player gets a match and a bingo.
 const sound = new Audio('public/assets/sound-effects/coin.wav');
 
 const soundTwo = new Audio('public/assets/sound-effects/Win sound.wav');
@@ -30,28 +34,13 @@ function selectNextBingoNumber() {
         bingoNumber = "O-" + newNumber;
     }
 
+    // Created canvas element to display the text.
     const canvas = document.getElementById("mycanvas");
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillText("Your Number is: " + bingoNumber, 10, 80);
 
-    // window.alert('New number = ' + bingoNumber);
-
     if (usedNums[newNumber] === true) {
-        // window.alert('There is a match!');
-        // window.alert('Square = square' + numberToSquare[newNumber]);
-        // document.getElementById("square" + numberToSquare[newNumber]).style.backgroundColor = '#F8C8DC';
-
-        /*const cells = document.querySelectorAll('td');
-
-        cells.forEach(cell => {
-            cell.addEventListener('click', () => {
-                if (cell.id = "square" + numberToSquare[newNumber]) {
-                    sound.src = 'public/assets/sound-effects/coin.wav'; // Set the path to your audio file
-                    sound.play();
-                }
-            });
-        });*/
 
         let thisSquare = numberToSquare[newNumber];
         squaresSelected[thisSquare] = true;
@@ -156,10 +145,10 @@ function alertWin() {
 
 function checkForChangeColor(cell) {
 
-    if (cell.id == "square" + numberToSquare[newNumber]) {
+    if (cell.id == 'square' + numberToSquare[newNumber]) {
         sound.src = 'public/assets/sound-effects/coin.wav'; // Set the path to your audio file
         sound.play();
-        cell.style.backgroundColor = "#F8C8DC";
+        cell.style.backgroundColor = '#F8C8DC';
         checkForBingo();
     }
 }
