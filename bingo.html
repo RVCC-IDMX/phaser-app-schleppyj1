@@ -1,0 +1,138 @@
+<html>
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Cambay' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8" />
+
+    <title>Bingo</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bingo.css">
+    <link rel="shortcut icon" type="image/png" href="public/Bingo-Icon.png">
+    <style>
+        body {
+            background-image: url('public/assets/Images/Final-JavaScript-Project-Background.png');
+        }
+    </style>
+    <canvas id="mycanvas"></canvas>
+
+    <script src="src/js/bingo.js"></script>
+
+
+    <script>var usedNums = new Array(76);
+        var numberToSquare = new Array(76);
+
+        function newCard() {
+            //Starting loop through each square card
+            for (var i = 0; i < 24; i++) {  //<--always this code for loops. change in red
+                setSquare(i);
+            }
+
+            var canvas = document.getElementById("mycanvas");
+            var ctx = canvas.getContext("2d");
+
+            ctx.font = "30px Arial";
+            ctx.fillStyle = 'white';
+            ctx.fillText("Your Number Is: ", 10, 80);
+
+        }
+
+        function setSquare(thisSquare) {
+            var currSquare = "square" + thisSquare;
+            var newNum;
+
+            var colPlace = new Array(0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4);
+
+            do {
+                newNum = (colPlace[thisSquare] * 15) + getNewNum() + 1;
+                // newNum = getNewNum();
+            }
+            while (usedNums[newNum]);
+
+            usedNums[newNum] = true;
+            document.getElementById(currSquare).innerHTML = newNum;
+            numberToSquare[newNum] = thisSquare;
+        }
+
+        function getNewNum() {
+            // return Math.floor(Math.random() * 75);
+            return Math.floor(Math.random() * 15);
+
+        }
+
+        function anotherCard() {
+            for (var i = 1; i < usedNums.length; i++) {
+                usedNums[i] = false;
+            }
+
+            newCard();
+        }
+    </script>
+
+</head>
+
+<body onload="newCard()">
+
+    <div id="container">
+        <div id="header">
+            <!--<h1>Create a BINGO Card</h1> -->
+            <button type="button" class="numberClick" onclick="selectNextBingoNumber();">Next Number</button>
+            <p></p>
+        </div>
+        <div id="ball-picker">
+        </div>
+        <div id="content">
+            <table id="bingotable">
+                <tr>
+                    <th class="orange">B</th>
+                    <th class="orange">I</th>
+                    <th class="orange">N</th>
+                    <th class="orange">G</th>
+                    <th class="orange">O</th>
+                </tr>
+                <tr>
+                    <td id="square0" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square1" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square2" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square3" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square4" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="square5" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square6" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square7" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square8" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square9" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="square10" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square11" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="squarefree"> FREE</td>
+                    <td id="square12" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square13" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="square14" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square15" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square16" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square17" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square18" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                </tr>
+                <tr>
+                    <td id="square19" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square20" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square21" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square22" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                    <td id="square23" onclick="checkForChangeColor(this)"> &nbsp;</td>
+                </tr>
+            </table>
+
+        </div>
+        <button class="playAgain" onClick="window.location.reload();">Play Again?</button>
+        <!-- <p><a href="#" onclick="anotherCard()">Click here</a> to create a new card</p> -->
+
+
+
+</body>
+
+</html>
