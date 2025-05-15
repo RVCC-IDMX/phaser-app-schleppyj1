@@ -3,7 +3,7 @@
 
 [build]
   # Directory that will contain the built assets after vite build
-  publish = "public"
+  publish = "/"
 
   # Command to build the site using Vite
   command = "npm run build"
